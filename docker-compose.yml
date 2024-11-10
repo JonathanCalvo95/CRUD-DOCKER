@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  
+  db:
+    image: mongo
+    container_name: productdb_container
+    volumes:
+      - ./data/mongo:/data/db
+    ports:
+    - "27018:27017"
+  
+  back:
+    container_name: back_container
+    build: ./back
+    env_file:
+      - ./back/.env
+    environment:
+      - MONGO_URL:${MONGO_URL}
+    depends_on:
+      - db
+    ports: 
+      - "3000:3000"
+    networks:
+      - app-network
+
+
+  front:  
+    container_name: front_container
+    build: ./front
+    depends_on:
+        - back
+    ports:
+      - "4000:80"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
