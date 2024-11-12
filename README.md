@@ -24,9 +24,33 @@ Para comenzar con la aplicación de este producto, siga los pasos a continuació
 
 4. Pausar los contenedores, ubicarse en el path del archivo docker-compose y ejecutar:
  
-        docker-compose up --build.
+        docker compose stop
+
+        docker compose up -d
 
 Esto iniciará el contenedor de la aplicación del producto y lo expondrá en el puerto configurado de su máquina local.
 
 Acceda a la aplicación del producto en su navegador web:
     Abra un navegador web y vaya a http://localhost:puerto para acceder a la aplicación del producto.
+
+Si desea limpiar su docker ejecute: docker system prune -a
+
+## Configuracion NGROK
+
+1. Ejecutar en la terminal:
+
+        ngrok config edit
+
+2. Colocar configuracion:
+ 
+version: "3"
+agent:
+    authtoken: auth-token
+tunnels:
+  productos-frontend:
+    addr: 4000
+    proto: http
+
+3. Correr NGROK:
+
+        ngrok start --all
