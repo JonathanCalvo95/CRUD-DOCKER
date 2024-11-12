@@ -27,6 +27,7 @@ export function CreateProduct({ onStateChange, productToEdit }: ICreateProductAr
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const r = (Math.floor(Math.random() * (100 - 1 + 1)) + 1).toString();
 
     // Verificar campos vacíos
     if (!product.name || !product.category || !product.price || !product.stock) {
@@ -55,12 +56,12 @@ export function CreateProduct({ onStateChange, productToEdit }: ICreateProductAr
       if (response.type == "create") {
         setProduct(initProduct);  // Reiniciar el formulario
         setError(null);  // Limpiar el mensaje de error
-        onStateChange('');
+        onStateChange(r);
       } else {
         // Si es una actualización, no hay `newProduct`, solo confirmamos éxito
         setProduct(initProduct);  // Reiniciar el formulario
         setError(null);  // Limpiar el mensaje de error
-        onStateChange(productToEdit?._id || '');  // Pasar el ID del producto editado
+        onStateChange(r);  // Pasar el ID del producto editado
       }
 
     } catch (err) {
