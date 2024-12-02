@@ -8,8 +8,8 @@ async function bootstrap() {
   // Habilitar CORS para todos los orígenes
   app.enableCors({
     origin: '*',                              // Permitir todos los orígenes
-    methods: 'GET,POST,PUT,DELETE',           // Métodos permitidos
-    allowedHeaders: 'Content-Type, Authorization'  // Headers permitidos
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],           // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']  // Headers permitidos
   });
 
   await app.listen(port);

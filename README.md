@@ -50,6 +50,10 @@ tunnels:
   productos-frontend:
     addr: 4000
     proto: http
+  productos-backend:
+    addr: 3000
+    proto: http
+
 
 3. Correr NGROK:
 

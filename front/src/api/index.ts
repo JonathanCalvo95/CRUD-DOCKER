@@ -9,6 +9,7 @@ class API {
                 {
                     headers: {
                         Accept: 'application/json',
+                        'ngrok-skip-browser-warning': 'true',
                     },
                 },
             );
